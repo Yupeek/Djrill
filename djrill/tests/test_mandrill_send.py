@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 import json
 import os
 import re
-import six
 import unittest
 from base64 import b64decode
 from datetime import date, datetime, timedelta, tzinfo
@@ -342,7 +341,7 @@ class DjrillMandrillFeatureTests(DjrillBackendMockAPITestCase):
             'from@example.com', ['to@example.com'])
 
     def assertStrContains(self, haystack, needle, msg=None):
-        six.assertRegex(self, haystack, re.escape(needle), msg)
+        self.assertRegex(haystack, re.escape(needle), msg)
 
     def test_tracking(self):
         # First make sure we're not setting the API param if the track_click
@@ -373,7 +372,7 @@ class DjrillMandrillFeatureTests(DjrillBackendMockAPITestCase):
         self.message.signing_domain = "example.com"
         self.message.return_path_domain = "support.example.com"
         self.message.subaccount = "marketing-dept"
-        self.message.async = True
+        setattr(self.message,"async",True)
         self.message.ip_pool = "Bulk Pool"
         self.message.send()
         data = self.get_api_call_data()
@@ -521,7 +520,7 @@ class DjrillMandrillFeatureTests(DjrillBackendMockAPITestCase):
     def test_send_attaches_mandrill_response(self):
         """ The mandrill_response should be attached to the message when it is sent """
         response = [{'email': 'to1@example.com', 'status': 'sent'}]
-        self.mock_post.return_value = self.MockResponse(raw=six.b(json.dumps(response)))
+        self.mock_post.return_value = self.MockResponse(raw=json.dumps(response).encode())
         msg = mail.EmailMessage('Subject', 'Message', 'from@example.com', ['to1@example.com'],)
         sent = msg.send()
         self.assertEqual(sent, 1)
@@ -551,7 +550,7 @@ class DjrillMandrillFeatureTests(DjrillBackendMockAPITestCase):
         err = cm.exception
         self.assertTrue(isinstance(err, TypeError))  # Djrill 1.x re-raised TypeError from json.dumps
         self.assertStrContains(str(err), "Don't know how to send this data to Mandrill")  # our added context
-        self.assertStrContains(str(err), "Decimal('19.99') is not JSON serializable")  # original message
+        self.assertStrContains(str(err), "Decimal is not JSON serializable")  # original message
 
     def test_dates_not_serialized(self):
         """Pre-2.0 Djrill accidentally serialized dates to ISO"""
@@ -695,7 +694,7 @@ class DjrillMandrillGlobalFeatureTests(DjrillBackendMockAPITestCase):
         self.message.google_analytics_campaign = ['UA-99999999-1']
         self.message.metadata = ['override']
         self.message.merge_language = 'handlebars'
-        self.message.async = False
+        setattr(self.message,"async", False)
         self.message.ip_pool = "Bulk Pool"
         self.message.send()
         data = self.get_api_call_data()

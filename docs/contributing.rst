@@ -46,8 +46,7 @@ combinations of Django and Python versions. (Full list in
 Most of the included tests verify that Djrill constructs the expected Mandrill API
 calls, without actually calling Mandrill or sending any email. So these tests
 don't require a Mandrill API key, but they *do* require
-`mock <http://www.voidspace.org.uk/python/mock/index.html>`_
-and `six <https://pythonhosted.org/six/>`_ (``pip install mock six``).
+`mock <http://www.voidspace.org.uk/python/mock/index.html>`_.
 
 To run the tests, either::
 
