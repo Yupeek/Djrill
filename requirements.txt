@@ -1,0 +1,3 @@
+requests>=2.31.0
+Django>=3.2.25
+mock

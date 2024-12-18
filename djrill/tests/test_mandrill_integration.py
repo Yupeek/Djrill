@@ -31,7 +31,7 @@ class DjrillIntegrationTests(TestCase):
 
     def setUp(self):
         self.message = mail.EmailMultiAlternatives(
-            'Subject', 'Text content', 'from@example.com', ['to@example.com'])
+            'Subject', 'Text content', 'from@yupeek.com', ['to@yupeek.com'])
         self.message.attach_alternative('<p>HTML content</p>', "text/html")
 
     def test_send_mail(self):
@@ -41,7 +41,7 @@ class DjrillIntegrationTests(TestCase):
         # noinspection PyUnresolvedReferences
         response = self.message.mandrill_response
         self.assertIn(response[0]['status'], ['sent', 'queued'])  # successful send (could still bounce later)
-        self.assertEqual(response[0]['email'], 'to@example.com')
+        self.assertEqual(response[0]['email'], 'to@yupeek.com')
         self.assertGreater(len(response[0]['_id']), 0)
 
     def test_invalid_from(self):
