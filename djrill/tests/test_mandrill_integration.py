@@ -52,7 +52,7 @@ class DjrillIntegrationTests(TestCase):
             self.message.send()
             self.fail("This line will not be reached, because send() raised an exception")
         except MandrillAPIError as err:
-            self.assertEqual(err.status_code, 500)
+            self.assertEqual(err.status_code, 400)
             self.assertIn("email address is invalid", str(err))
 
     def test_invalid_to(self):
@@ -101,5 +101,5 @@ class DjrillIntegrationTests(TestCase):
             self.message.send()
             self.fail("This line will not be reached, because send() raised an exception")
         except MandrillAPIError as err:
-            self.assertEqual(err.status_code, 500)
+            self.assertEqual(err.status_code, 401)
             self.assertIn("Invalid API key", str(err))
