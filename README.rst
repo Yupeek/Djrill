@@ -20,19 +20,7 @@ Djrill: Mandrill Transactional Email for Django
 Djrill integrates the `Mandrill <http://mandrill.com>`_ transactional
 email service into Django.
 
-  **PROJECT STATUS: INACTIVE**
-
-  As of April, 2016, Djrill is no longer actively maintained (other
-  than security updates). It is likely to keep working unless/until
-  Mandrill changes their APIs, but Djrill will not be updated for
-  newer Django versions or Mandrill changes.
-  (`more info <https://github.com/brack3t/Djrill/issues/111>`_)
-
-  You may be interested in
-  `django-anymail <https://github.com/anymail/django-anymail>`_,
-  a Djrill fork that supports Mailgun, Postmark, SendGrid, and other
-  transactional ESPs (including limited support for Mandrill).
-
+This is a fork of the inactive `brack3t's Djrill <https://github.com/brack3t/Djrill>`_.
 
 In general, Djrill "just works" with Django's built-in `django.core.mail`
 package. It includes:
@@ -43,13 +31,12 @@ package. It includes:
 * Optional support for Mandrill inbound email and other webhook notifications,
   via Django signals
 
-Djrill is released under the BSD license. It is tested against Django 1.4--1.9
-(including Python 3 with Django 1.6+, and PyPy support with Django 1.5+).
+Djrill is released under the BSD license. It is tested against Django 4.0-5.2.
 Djrill uses `semantic versioning <http://semver.org/>`_.
 
 .. END shared-intro
 
-.. image:: https://travis-ci.org/brack3t/Djrill.png?branch=master
+.. .. image:: https://travis-ci.org/brack3t/Djrill.png?branch=master
        :target: https://travis-ci.org/brack3t/Djrill
        :alt:    build status on Travis-CI
 
@@ -58,7 +45,7 @@ Djrill uses `semantic versioning <http://semver.org/>`_.
 
 * Full documentation: https://djrill.readthedocs.io/en/latest/
 * Package on PyPI: https://pypi.python.org/pypi/djrill
-* Project on Github: https://github.com/brack3t/Djrill
+* Project on Github: https://github.com/Yupeek/Djrill
 
 
 Djrill 1-2-3
