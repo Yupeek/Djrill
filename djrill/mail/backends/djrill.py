@@ -5,10 +5,7 @@ from base64 import b64encode
 from datetime import date, datetime
 from email.mime.base import MIMEBase
 from email.utils import parseaddr
-try:
-    from urlparse import urljoin  # python 2
-except ImportError:
-    from urllib.parse import urljoin  # python 3
+from urllib.parse import urljoin
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
