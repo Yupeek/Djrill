@@ -1,5 +1,3 @@
-from __future__ import unicode_literals
-
 import os
 import unittest
 
@@ -31,7 +29,7 @@ class DjrillIntegrationTests(TestCase):
 
     def setUp(self):
         self.message = mail.EmailMultiAlternatives(
-            'Subject', 'Text content', 'from@example.com', ['to@example.com'])
+            'Subject', 'Text content', 'from@yupeek.com', ['to@yupeek.com'])
         self.message.attach_alternative('<p>HTML content</p>', "text/html")
 
     def test_send_mail(self):
@@ -41,7 +39,7 @@ class DjrillIntegrationTests(TestCase):
         # noinspection PyUnresolvedReferences
         response = self.message.mandrill_response
         self.assertIn(response[0]['status'], ['sent', 'queued'])  # successful send (could still bounce later)
-        self.assertEqual(response[0]['email'], 'to@example.com')
+        self.assertEqual(response[0]['email'], 'to@yupeek.com')
         self.assertGreater(len(response[0]['_id']), 0)
 
     def test_invalid_from(self):
@@ -52,7 +50,7 @@ class DjrillIntegrationTests(TestCase):
             self.message.send()
             self.fail("This line will not be reached, because send() raised an exception")
         except MandrillAPIError as err:
-            self.assertEqual(err.status_code, 500)
+            self.assertEqual(err.status_code, 400)
             self.assertIn("email address is invalid", str(err))
 
     def test_invalid_to(self):
@@ -101,5 +99,5 @@ class DjrillIntegrationTests(TestCase):
             self.message.send()
             self.fail("This line will not be reached, because send() raised an exception")
         except MandrillAPIError as err:
-            self.assertEqual(err.status_code, 500)
+            self.assertEqual(err.status_code, 401)
             self.assertIn("Invalid API key", str(err))

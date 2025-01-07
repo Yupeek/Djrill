@@ -20,6 +20,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # define __version__ and __minor_version__ from ../djrill/_version.py,
 # but without importing from djrill (which would make docs dependent on Django, etc.)
+__version__, __minor_version__ = "0.0.dev0", "0.0"
 with open("../djrill/_version.py") as f:
     code = compile(f.read(), "../djrill/_version.py", 'exec')
     exec(code)

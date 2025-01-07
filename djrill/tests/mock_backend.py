@@ -1,6 +1,7 @@
 import json
+from io import BytesIO
+
 import requests
-import six
 from mock import patch
 
 from django.test import TestCase
@@ -26,7 +27,7 @@ class DjrillBackendMockAPITestCase(TestCase):
             super(DjrillBackendMockAPITestCase.MockResponse, self).__init__()
             self.status_code = status_code
             self.encoding = encoding
-            self.raw = six.BytesIO(raw)
+            self.raw = BytesIO(raw)
 
     def setUp(self):
         self.patch = patch('requests.Session.post', autospec=True)
