@@ -59,7 +59,7 @@ Djrill 1-2-3
 
    .. code-block:: console
 
-        $ pip install djrill
+        $ pip install djrill-fork
 
 
 2. Edit your project's ``settings.py``:
