@@ -44,7 +44,7 @@ Djrill uses `semantic versioning <http://semver.org/>`_.
 **Resources**
 
 * Full documentation: https://djrill.readthedocs.io/en/latest/
-* Package on PyPI: https://pypi.python.org/pypi/djrill
+* Package on PyPI: https://pypi.python.org/pypi/djrill-fork
 * Project on Github: https://github.com/Yupeek/Djrill
 
 
