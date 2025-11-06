@@ -31,7 +31,7 @@ Your code can connect to this signal for further processing.
 
 .. _Mandrill webhooks: http://help.mandrill.com/entries/21738186-Introduction-to-Webhooks
 .. _securing webhooks: http://apidocs.mailchimp.com/webhooks/#securing-webhooks
-.. _webhook signature: http://help.mandrill.com/entries/23704122-Authenticating-webhook-requests
+.. _webhook signature: https://mailchimp.com/developer/transactional/guides/track-respond-activity-webhooks/#authenticating-webhook-requests
 
 .. _webhooks-config:
 

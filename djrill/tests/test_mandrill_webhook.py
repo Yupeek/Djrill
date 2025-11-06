@@ -8,7 +8,6 @@ from django.core.exceptions import ImproperlyConfigured
 from django.test import TestCase
 from django.test.utils import override_settings
 
-from djrill.compat import b
 from djrill.signals import webhook_event
 
 
@@ -56,8 +55,8 @@ class DjrillWebhookSignatureMixinTests(TestCase):
 
     @override_settings(DJRILL_WEBHOOK_URL="/webhook/?secret=abc123")
     def test_signature(self):
-        signature = hmac.new(key=b(settings.DJRILL_WEBHOOK_SIGNATURE_KEY),
-                             msg=b(settings.DJRILL_WEBHOOK_URL+"mandrill_events[]"),
+        signature = hmac.new(key=settings.DJRILL_WEBHOOK_SIGNATURE_KEY.encode('latin-1'),
+                             msg=(settings.DJRILL_WEBHOOK_URL+"mandrill_events[]").encode('latin-1'),
                              digestmod=hashlib.sha1)
         hash_string = b64encode(signature.digest())
         response = self.client.post('/webhook/?secret=abc123', data={"mandrill_events":"[]"},
